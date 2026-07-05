@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Esports Prediction Model | Jackson Sporer</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Jackson Sporer</a>
+  <ul class="nav-links">
+    <li><a href="../index.html#about">About</a></li>
+    <li><a href="../index.html#skills">Skills</a></li>
+    <li><a href="../index.html#projects">Projects</a></li>
+    <li><a href="https://www.linkedin.com/in/jackson-sporer-904047264/" target="_blank">LinkedIn</a></li>
+    <li><a href="https://github.com/JacksonSporerrr" target="_blank">GitHub</a></li>
+  </ul>
+</nav>
+
+<div class="project-hero" style="background: linear-gradient(135deg, #3b0764 0%, #581c87 60%, #7c3aed 100%);">
+  <div style="max-width:900px; margin:0 auto;">
+    <a href="../index.html#projects" class="back-link">← Back to Projects</a>
+    <h1>Esports Performance Prediction Model</h1>
+    <p style="color:#e9d5ff; font-size:1rem; max-width:660px;">
+      A self-directed machine learning project that scraped competitive Fortnite player data
+      and used XGBoost pairwise ranking to forecast FNCS tournament outcomes.
+    </p>
+    <div class="tool-tags">
+      <span class="tool-tag">Python</span>
+      <span class="tool-tag">XGBoost</span>
+      <span class="tool-tag">Selenium</span>
+      <span class="tool-tag">pandas</span>
+      <span class="tool-tag">scikit-learn</span>
+    </div>
+  </div>
+</div>
+
+<div class="project-content">
+
+  <div class="project-section">
+    <h2>Overview</h2>
+    <p>
+      Competitive Fortnite (FNCS — Fortnite Champion Series) attracts thousands of players across
+      global qualifiers and Grand Finals. Predicting team placement ahead of tournaments is a challenging
+      problem — results depend on historical performance, current form, duo chemistry, and match-specific
+      strategies like drop location. This self-directed project built an end-to-end pipeline: scraping
+      public player stats, engineering features, training a ranking model, and generating tournament
+      predictions.
+    </p>
+  </div>
+
+  <div class="project-section">
+    <h2>Tools &amp; Technologies</h2>
+    <div class="tags" style="margin-top:0.5rem;">
+      <span class="tag">Python</span>
+      <span class="tag">XGBoost</span>
+      <span class="tag">Selenium</span>
+      <span class="tag">pandas</span>
+      <span class="tag">scikit-learn</span>
+      <span class="tag">joblib</span>
+      <span class="tag">CSV / Data Pipelines</span>
+    </div>
+  </div>
+
+  <div class="project-section">
+    <h2>Dataset</h2>
+    <p>
+      All data was self-collected from public web sources. Using Python scripts and Selenium for
+      browser automation, I scraped:
+    </p>
+    <ul style="margin-top:0.75rem;">
+      <li><strong>Power Rankings (PR)</strong> — the competitive ranking metric used by the Fortnite community</li>
+      <li><strong>Career earnings</strong> — total prize money won by each player</li>
+      <li><strong>FNCS wins</strong> — number of major championship titles</li>
+      <li><strong>Top 5 finishes</strong> — consistency indicator across major events</li>
+      <li><strong>Session data</strong> — per-match stats (points, placements, eliminations, wins) across 15+ tournament sessions</li>
+      <li><strong>Drop location quality</strong> — custom scoring of duo drop spots by zone safety and loot value</li>
+    </ul>
+  </div>
+
+  <div class="project-section">
+    <h2>Process</h2>
+    <ul>
+      <li>Built Selenium and API-based scrapers to collect player stats from public Fortnite competitive tracking sites.</li>
+      <li>Cleaned and merged session-level match data with static player career stats into a unified feature set.</li>
+      <li>Engineered features per duo team: combined PR scores, earnings totals, FNCS win counts, Top 5 totals, average eliminations, and drop location quality.</li>
+      <li>Trained an <strong>XGBoost pairwise ranking model</strong> (<code>rank:pairwise</code>) on historical session data, treating lower placement rank as the target to maximize.</li>
+      <li>Applied Bonferroni-style model validation using held-out tournament sessions to evaluate prediction accuracy.</li>
+      <li>Generated ranked predictions for FNCS Heat sessions and Grand Finals using <code>fncs_predict.py</code> and <code>combined_predict.py</code>.</li>
+    </ul>
+  </div>
+
+  <div class="project-section">
+    <h2>Results</h2>
+    <div class="result-grid">
+      <div class="result-card">
+        <div class="number">15+</div>
+        <div class="label">Tournament sessions modeled</div>
+      </div>
+      <div class="result-card">
+        <div class="number">6</div>
+        <div class="label">Feature categories engineered</div>
+      </div>
+      <div class="result-card">
+        <div class="number">FNCS</div>
+        <div class="label">Grand Finals predicted</div>
+      </div>
+    </div>
+    <p style="margin-top:1rem;">
+      The model successfully ranked competitive duos and generated pre-tournament placement predictions
+      for FNCS heats and Grand Finals. Drop location quality and Power Ranking emerged as the strongest
+      predictive features. The pipeline was actively updated across multiple FNCS seasons, with new session
+      data incorporated to refine predictions.
+    </p>
+  </div>
+
+  <div class="project-section">
+    <h2>Business Insights</h2>
+    <div class="insight-box">
+      <p>
+        Competitive gaming organizations and esports analysts increasingly rely on data to scout talent,
+        set betting lines, and understand team dynamics. This project demonstrates that public data —
+        when properly cleaned and feature-engineered — can yield meaningful predictive signal even for
+        fast-moving competitive environments. The same methodology could be adapted to other esports titles
+        or used by talent agencies to identify undervalued players before they break out.
+      </p>
+    </div>
+  </div>
+
+  <div class="project-section">
+    <h2>Source Code</h2>
+    <p style="color:var(--muted);">
+      This was a self-directed personal project. Source code is available upon request.
+    </p>
+  </div>
+
+</div>
+
+<footer>
+  <p>Jackson Sporer &nbsp;·&nbsp; <a href="mailto:sporerjackson@gmail.com">sporerjackson@gmail.com</a> &nbsp;·&nbsp; 612-516-0441</p>
+  <p style="margin-top:0.5rem;">
+    <a href="https://github.com/JacksonSporerrr" target="_blank">GitHub</a> &nbsp;·&nbsp;
+    <a href="https://www.linkedin.com/in/jackson-sporer-904047264/" target="_blank">LinkedIn</a>
+  </p>
+</footer>
+
+</body>
+</html>

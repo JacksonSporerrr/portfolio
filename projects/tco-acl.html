@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TCO ACL Study | Jackson Sporer</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Jackson Sporer</a>
+  <ul class="nav-links">
+    <li><a href="../index.html#about">About</a></li>
+    <li><a href="../index.html#skills">Skills</a></li>
+    <li><a href="../index.html#projects">Projects</a></li>
+    <li><a href="https://www.linkedin.com/in/jackson-sporer-904047264/" target="_blank">LinkedIn</a></li>
+    <li><a href="https://github.com/JacksonSporerrr" target="_blank">GitHub</a></li>
+  </ul>
+</nav>
+
+<div class="project-hero">
+  <div style="max-width:900px; margin:0 auto;">
+    <a href="../index.html#projects" class="back-link">← Back to Projects</a>
+    <h1>Twin Cities Orthopedics ACL Knee Study</h1>
+    <p style="color:#93c5fd; font-size:1rem; max-width:680px;">
+      Paired-sample t-test and ARIMA time series analysis of 20 cadaveric knees to compare ACL
+      reconstruction techniques. Findings presented to Twin Cities Orthopedics.
+    </p>
+    <div class="tool-tags">
+      <span class="tool-tag">R</span>
+      <span class="tool-tag">Java</span>
+      <span class="tool-tag">Excel</span>
+      <span class="tool-tag">ARIMA</span>
+      <span class="tool-tag">Statistical Analysis</span>
+    </div>
+  </div>
+</div>
+
+<div class="project-content">
+
+  <div class="project-section">
+    <h2>Overview</h2>
+    <p>
+      A significant subset of ACL reconstructions (ACLR) result in re-rupture. Two augmentation
+      techniques — Modified Lemaire Lateral Extra-Articular Tenodesis (ML LET) and Anatomic
+      Anterolateral Ligament Reconstruction (ALL) — may reduce this risk by improving rotational
+      stability. This study asked three core questions:
+    </p>
+    <ul style="margin-top:0.75rem;">
+      <li>Does an isolated ACLR restore full knee stability?</li>
+      <li>If not, does ML LET or ALL augmentation help?</li>
+      <li>Are there measurable mechanical differences between ML LET and ALL?</li>
+    </ul>
+  </div>
+
+  <div class="project-section">
+    <h2>Tools &amp; Technologies</h2>
+    <div class="tags" style="margin-top:0.5rem;">
+      <span class="tag">R</span>
+      <span class="tag">Java</span>
+      <span class="tag">Excel</span>
+      <span class="tag">Paired Sample T-Tests</span>
+      <span class="tag">ARIMA</span>
+      <span class="tag">Bonferroni Correction</span>
+      <span class="tag">ADF Test</span>
+      <span class="tag">KPSS Test</span>
+    </div>
+  </div>
+
+  <div class="project-section">
+    <h2>Dataset</h2>
+    <p>
+      The dataset came from biomechanical testing performed on <strong>20 paired cadaveric knees</strong>
+      (10 left, 10 right) at Twin Cities Orthopedics. Each knee was tested across 4 surgical states:
+      Intact ACL, ACL Deficient, ACLR, and ACLR + either ML LET or ALL. Under each state, a robotic
+      testing machine performed 11 standardized mechanical tests — including Internal Rotation (5 Nm
+      torque, 0–90° flexion), Anterior Tibial Load (88 N force), and Simulated Pivot Shift (5 Nm + 10 Nm
+      valgus torque). Data was recorded at 1 ms intervals, capturing 6 directional and rotational
+      measurements per millisecond.
+    </p>
+  </div>
+
+  <div class="project-section">
+    <h2>Process</h2>
+    <ul>
+      <li>Cleaned raw Excel data by subtracting equilibrium from the Intact state baseline, then normalizing all other states against that corrected Intact baseline.</li>
+      <li>Computed mean differences and standard deviations for all combinations of surgical state × trajectory × rotation.</li>
+      <li>Ran <strong>44 paired sample t-tests</strong> (one per unique trajectory/rotation pair) comparing each reconstructed state against the intact knee.</li>
+      <li>Applied a <strong>Bonferroni correction</strong> (α = 0.05 ÷ 44 = 0.001136) to control for multiple comparisons.</li>
+      <li>Conducted an <strong>ARIMA time series analysis</strong> on a subset of 4 knees at Pivot 30° flexion, training each model on 903 ms of data and forecasting 100 ms forward.</li>
+      <li>Validated ARIMA stationarity using <strong>Augmented Dickey-Fuller (ADF)</strong> and <strong>KPSS</strong> tests.</li>
+    </ul>
+  </div>
+
+  <div class="project-section">
+    <h2>Results</h2>
+    <div class="result-grid">
+      <div class="result-card">
+        <div class="number">44</div>
+        <div class="label">Paired t-tests run</div>
+      </div>
+      <div class="result-card">
+        <div class="number">17</div>
+        <div class="label">Significant posterior differences</div>
+      </div>
+      <div class="result-card">
+        <div class="number">1.4°</div>
+        <div class="label">ALL avg deviation from intact</div>
+      </div>
+      <div class="result-card">
+        <div class="number">2.5°</div>
+        <div class="label">ML LET avg deviation from intact</div>
+      </div>
+    </div>
+    <ul style="margin-top:1rem;">
+      <li>Posterior rotation showed the most instability — 17 statistically significant differences from intact across surgical states.</li>
+      <li>Internal rotation showed only 2 significant differences, and Valgus/Medial/Superior rotations showed just 1 combined.</li>
+      <li><strong>ACLR + ALL</strong> produced the lowest average deviation from the intact knee (≈1.4°), outperforming both ACLR alone (≈1.75°) and ACLR + ML LET (≈2.5°).</li>
+      <li>ARIMA stationarity testing: ACLR and ALL were stationary (p = 0.01), while ML LET failed to achieve stationarity (p = 0.3135) — confirmed by KPSS (p = 0.01).</li>
+      <li>ALL showed a narrower ARIMA forecast band, indicating more consistent and predictable knee behavior over time.</li>
+    </ul>
+  </div>
+
+  <div class="project-section">
+    <h2>Business Insights</h2>
+    <div class="insight-box">
+      <p>
+        These findings give surgeons a data-backed framework for choosing between augmentation techniques.
+        Patients prioritizing <strong>knee stability</strong> may benefit more from ACLR + ML LET;
+        patients prioritizing <strong>range of motion and mobility</strong> are better served by ACLR + ALL,
+        which most closely matched the intact knee's behavior. The ARIMA results further suggest ALL
+        produces more predictable long-term kinematics — a meaningful consideration for athletic populations
+        at high re-rupture risk.
+      </p>
+    </div>
+  </div>
+
+  <div class="project-section">
+    <h2>Presentation</h2>
+    <a href="../files/tco-acl-presentation.pdf" target="_blank" class="github-link" style="background:#0f2044;">
+      &#128196; View Full Presentation (PDF)
+    </a>
+  </div>
+
+  <div class="project-section">
+    <h2>Source Code</h2>
+    <p style="color:var(--muted);">
+      This was a confidential research project conducted in partnership with Twin Cities Orthopedics.
+      Source code is not publicly available.
+    </p>
+  </div>
+
+</div>
+
+<footer>
+  <p>Jackson Sporer &nbsp;·&nbsp; <a href="mailto:sporerjackson@gmail.com">sporerjackson@gmail.com</a> &nbsp;·&nbsp; 612-516-0441</p>
+  <p style="margin-top:0.5rem;">
+    <a href="https://github.com/JacksonSporerrr" target="_blank">GitHub</a> &nbsp;·&nbsp;
+    <a href="https://www.linkedin.com/in/jackson-sporer-904047264/" target="_blank">LinkedIn</a>
+  </p>
+</footer>
+
+</body>
+</html>
